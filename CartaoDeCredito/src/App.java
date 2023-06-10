@@ -4,10 +4,10 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 import Objetos.classesDAO.UsuarioComumDAO;
+import Objetos.entidades.Usuario;
 import Objetos.entidades.UsuarioComum;
 
 
-// CUCUCUUCUCCUCUCUUCUCUCUCUCUCUCUUCUCCUCUCUUCUCUCUCUCUCUCUUCUCCUCUCUUCUCUCUCUCUCUCUUCUCCUCUCUUCUCUCUCUCUCUCUUCUCCUCUCUUCUCUCUCUCUCUCUUCUCCUCUCUUCUCUCUCU
 
 public class App {
     
@@ -22,7 +22,11 @@ public class App {
         System.out.println("MENU");
         System.out.println("1- Cadstrar usuário.");
         System.out.println("2- Gerar cartão para usuário.");
-        System.out.println("3- Sair");
+        System.out.println("3- Realizar transações.");
+        System.out.println("4- Efetuar pagamentos.");
+        System.out.println("5- Consultar saldo.");
+        System.out.println("6- Listar cartões do usuario.");
+        System.out.println("7- Sair");
         System.out.print("Digite: ");
         return teclado.nextInt();
     }
@@ -51,12 +55,28 @@ public class App {
 
     }
 
-    private static void metodoCriarCartaoParaUsuario(UsuarioComum uc){
+    private static void metodoGerarCartaoParaUsuario(UsuarioComum uc){
+        Scanner teclado = new Scanner(System.in);
         UsuarioComumDAO udao = new UsuarioComumDAO();
+
+       
+        System.out.println("Limite do cartão: ");
+        String limite = teclado.next();
+        
+        Double limiteD = Double.valueOf(limite);
+
+        udao.gerarCartaoCredito(uc, limiteD);
         
         
 
     }
+
+    private static void metodoListarCartoes(UsuarioComum uc){
+        UsuarioComumDAO udao = new UsuarioComumDAO();
+        udao.listarCartoes(uc);
+        
+    }
+
     public static void main(String[] args) throws Exception {
         ArrayList<UsuarioComum> usuarioComums = new ArrayList<UsuarioComum>();
         int op;
@@ -83,10 +103,11 @@ public class App {
                         int index = teclado.nextInt() -1;
                         try {
                             UsuarioComum uc = usuarioComums.get(index);
-                            metodoCriarCartaoParaUsuario(uc);
+                            metodoGerarCartaoParaUsuario(uc);
                             
                         } catch (Exception e) {
-                            e.getMessage();
+                            System.out.println("Número de usuário inválido");
+                            //System.out.println(e.getMessage()); 
                         }
 
                     } else {
@@ -97,9 +118,51 @@ public class App {
                     
                     break;
                 }
-                
                 case 3: {
-                    System.out.println("Saindo");
+                    //realizar transacoes
+                    break;
+                }
+
+                case 4: {
+                    //efetuar pagamento
+                    break;
+                }
+                case 5: {
+                    //consultar saldo
+                    break;
+                }
+
+                case 6: {
+                    //listar cartoes
+                    Scanner teclado = new Scanner(System.in);
+                    if (usuarioComums.size() > 0){
+                        int i = 1;
+                        for (UsuarioComum e : usuarioComums){
+                            System.out.println(i + " Nome:" + e.getNome() + " | Documento: " + e.getDocumento());
+                            i++;
+                        }
+
+                        System.out.println("Escolha o usuário (pelo número): ");
+                        int index = teclado.nextInt() -1;
+                        try {
+                            UsuarioComum uc = usuarioComums.get(index);
+                            metodoListarCartoes(uc);
+                            
+                        } catch (Exception e) {
+                            System.out.println("Número de usuário inválido");
+                            //System.out.println(e.getMessage()); 
+                        }
+
+                    } else {
+                        System.out.println("Nenhum usuário cadastrado.");
+                    }
+                    
+                    break;
+                }
+                
+                
+                case 7: {
+                    System.out.println("Saindo...");
                     break;
                 }
 
@@ -107,7 +170,7 @@ public class App {
                     System.out.println("Opção inválida!!!");
                     break;
             }
-        } while (op != 3);
+        } while (op != 7);
         
     }
 }

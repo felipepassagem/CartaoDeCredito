@@ -1,7 +1,7 @@
 package Objetos.entidades;
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class Usuario{
     private String nome;
@@ -9,7 +9,7 @@ public class Usuario{
     private String dataNascimento;
     private String genero;
     private String telefone;
-    private ArrayList<CartaoCredito> cartaoCredito;
+    private ArrayList<Cartao> cartaoCredito;
   
 
 
@@ -19,7 +19,7 @@ public class Usuario{
         this.dataNascimento = dataNascimento;
         this.genero = genero;
         this.telefone = telefone;
-        this.cartaoCredito = new ArrayList<CartaoCredito>();
+        this.cartaoCredito = new ArrayList<Cartao>();
         
     }
 
@@ -64,13 +64,13 @@ public class Usuario{
 
 
 
-    public ArrayList<CartaoCredito> getCartaoCredito() {
+    public ArrayList<Cartao> getCartaoCredito() {
         return cartaoCredito;
     }
 
 
 
-    public void setCartaoCredito(ArrayList<CartaoCredito> cartaoCredito) {
+    public void setCartaoCredito(ArrayList<Cartao> cartaoCredito) {
         this.cartaoCredito = cartaoCredito;
     }
 
