@@ -6,6 +6,7 @@ public class Cartao {
     private String numCartao;
     private String dataValidade;
     private double limiteCredito;
+    private String tipo = null;
 
     public Cartao(Usuario titular, String documento, String numCartao, String dataValidade, double limiteCredito) {
         this.titular = titular;
@@ -53,6 +54,14 @@ public class Cartao {
 
     public void setLimiteCredito(double limiteCredito) {
         this.limiteCredito = limiteCredito;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     

@@ -54,7 +54,7 @@ public class UsuarioComumDAO {
     public void gerarCartaoCredito(Usuario titular, double limiteCredito) {
 
         String numCartao = gerarNumeroCartao();
-        String dataValidade = this.gerarDataValidade();
+        String dataValidade = gerarDataValidade();
 
 
         CartaoCredito2 cCred = new CartaoCredito2(titular, titular.getDocumento(), numCartao, dataValidade, limiteCredito);
